@@ -40,10 +40,10 @@ steer = connect_motor(
 
 remote = Remote()
 
-MAX_SPEED = 1200         # vitesse max en deg/s
-STEER_STEP = 5           # incrément par appui court sur B+ ou B-
+MAX_SPEED = 1000         # vitesse max en deg/s
+STEER_STEP = 20           # incrément par appui court sur B+ ou B-
 STEER_MARGIN = 2         # marge pour éviter la contrainte sur les butées
-STEER_SPEED = 800        # vitesse de braquage en deg/s
+STEER_SPEED = 1200       # vitesse de braquage en deg/s (augmentée pour répondre plus vite)
 
 
 def shutdown_system():
@@ -97,6 +97,7 @@ while True:
     buttons = remote.buttons.pressed() or ()
 
     if Button.LEFT in buttons:
+        print("Shutdown!")
         shutdown_system()
 
     # A+/A- contrôle direct de la propulsion : relâcher = stop.
